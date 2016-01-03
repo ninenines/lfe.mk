@@ -1,0 +1,19 @@
+= LFE.mk
+
+http://lfe.io/[LFE] plugin for http://erlang.mk/[Erlang.mk]
+
+[source,make]
+----
+DEPS = lfe
+
+BUILD_DEPS = lfe.mk
+dep_lfe.mk = git https://github.com/ninenines/lfe.mk master
+DEP_PLUGINS = lfe.mk
+
+include erlang.mk
+----
+
+The command `make` will compile all LFE files in the 'src/'
+directory.
+
+The command `lfe-shell` will open an LFE shell.
