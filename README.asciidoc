@@ -4,9 +4,7 @@ http://lfe.io/[LFE] plugin for http://erlang.mk/[Erlang.mk]
 
 [source,make]
 ----
-DEPS = lfe
-
-BUILD_DEPS = lfe.mk
+BUILD_DEPS = lfe lfe.mk
 dep_lfe.mk = git https://github.com/ninenines/lfe.mk master
 DEP_PLUGINS = lfe.mk
 
