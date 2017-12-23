@@ -25,7 +25,8 @@ LFE_FILES = $(sort $(call core_find,src/,*.lfe))
 
 ifneq ($(LFE_FILES),)
 
-BEAM_FILES += $(addprefix ebin/,$(patsubst %.lfe,%.beam,$(notdir $(LFE_FILES))))
+BEAM_FILES += $(addprefix ebin/, $(addsuffix .beam,\
+	$(shell grep -h '^.defmodule ' src/*.lfe | sed 's/^.defmodule *\([^ ]*\).*/\1/')))
 
 # Rebuild LFE modules when the Makefile changes.
 $(LFE_FILES): $(MAKEFILE_LIST)
