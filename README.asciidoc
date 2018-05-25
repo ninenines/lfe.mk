@@ -12,6 +12,7 @@ include erlang.mk
 ----
 
 The command `make` will compile all LFE files in the 'src/'
-directory.
+directory. LFE files in the 'test/' directory will be compiled when
+running tests.
 
 The command `make lfe-shell` will open an LFE shell.
