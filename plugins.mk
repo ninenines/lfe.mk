@@ -12,7 +12,7 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-.PHONY: lfe-shell
+.PHONY: lfe-shell lfe-test-dir
 
 # Verbosity.
 
@@ -34,6 +34,17 @@ $(LFE_FILES): $(MAKEFILE_LIST)
 ebin/$(PROJECT).app:: $(LFE_FILES) | ebin/
 	$(if $(strip $?),$(lfe_verbose) PATH=$(PATH):$(DEPS_DIR)/lfe/bin lfec -o ebin/ $(LFE_FILES))
 
+endif
+
+LFE_TEST_FILES = $(sort $(call core_find,$(TEST_DIR),*.lfe))
+
+ifneq ($(LFE_TEST_FILES),)
+lfe-test-dir: $(LFE_TEST_FILES)
+	$(lfe_verbose) PATH=$(PATH):$(DEPS_DIR)/lfe/bin lfec -o test/ $(LFE_TEST_FILES)
+
+test-build:: lfe-test-dir
+else
+lfe-test-dir:
 endif
 
 # Shell.
